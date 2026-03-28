@@ -132,8 +132,6 @@ Project developed during **Arduino Days 2026** — SCOP, Benin.
 
 Open source — free to use and modify.# ArduX — Embedded Game Console
 
-A DIY retro game console built on the **ESP32 TTGO T-Display**, developed during **Arduino Days 2026** (SCOP, Benin). The project implements 6 classic games with an object-oriented architecture, finite state machine, and optimized rendering.
-
 ---
 
 
