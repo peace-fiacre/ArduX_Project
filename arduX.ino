@@ -102,6 +102,12 @@ void showBoot() {
   consoleState = MENU;
 }
 
+// ─────────────────────────────────────────────────────────────
+//  showGameOver — mélodie "dan dan dan houunn"
+//  SOL(200) → FA(200) → MI(200) → DO(500)
+//  On est déjà dans un contexte bloquant (écran affiché une fois)
+//  donc les delay() ici sont acceptables.
+// ─────────────────────────────────────────────────────────────
 void showGameOver() {
   highScore = EEPROM.read(0);
   bool newRecord = false;
@@ -144,6 +150,7 @@ void showGameOver() {
   screen.print(highScore);
 
   if(newRecord) {
+    // Nouveau record : fanfare montante
     screen.setTextSize(1);
     screen.setTextColor(TFT_GREEN);
     screen.setCursor(45,100);
@@ -153,8 +160,11 @@ void showGameOver() {
     tone(BUZZER_PIN,1319,100); delay(120);
     tone(BUZZER_PIN,1568,300); delay(350);
   } else {
-    tone(BUZZER_PIN,300,150); delay(180);
-    tone(BUZZER_PIN,200,300); delay(350);
+    // Défaite : "dan dan dan houunn" SOL → FA → MI → DO
+    tone(BUZZER_PIN, 392, 200); delay(250);  // SOL  — dan
+    tone(BUZZER_PIN, 349, 200); delay(250);  // FA   — dan
+    tone(BUZZER_PIN, 330, 200); delay(250);  // MI   — dan
+    tone(BUZZER_PIN, 262, 500); delay(550);  // DO   — houunn
   }
 
   screen.drawFastHLine(10,118,220,TFT_DARKGREY);
